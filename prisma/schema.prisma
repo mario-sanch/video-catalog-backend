@@ -10,11 +10,11 @@ datasource db {
 model video {
   VideoId       Int            @id @default(autoincrement())
   Name          String         @db.VarChar(45)
-  folderAddress String         @db.VarChar(150)
+  FolderAddress String         @db.VarChar(150)
   CategoryId    Int?
-  StatusId      Int
-  createdAt     DateTime       @db.DateTime(0)
-  updatedAt     DateTime       @db.DateTime(0)
+  StatusId      Int            @default(1)
+  CreatedAt     DateTime       @default(now()) @db.DateTime(0)
+  UpdatedAt     DateTime?      @db.DateTime(0)
   videocategory videocategory? @relation(fields: [CategoryId], references: [CategoryId], onDelete: NoAction, onUpdate: NoAction, map: "CategoryId")
   videostatus   videostatus    @relation(fields: [StatusId], references: [StatusId], onDelete: NoAction, onUpdate: NoAction, map: "StatusId")
 
